@@ -1,4 +1,5 @@
 import png
+import os
 
 #Note
 #For high contrast images, a detail level of 1 is recommended
@@ -7,6 +8,28 @@ import png
 #Usage
 #Run create() to hide msg.png in org.png's least significant bits
 #Run reverse() to get the hidden picture out of res.png
+
+def swap():
+	os.rename("org.png", "tmp.png")
+	os.rename("msg.png", "org.png")
+	os.rename("tmp.png", "msg.png")
+
+
+def fun():
+	os.mkdir("fun")
+	for i in range(1, 8):
+		for j in range(1, 8):
+			create(i)
+			reverse(j)
+			os.rename("bac.png", "fun/c"+str(i)+"r"+str(j)+".png")
+	
+	swap()
+	
+	for i in range(1, 8):
+		for j in range(1, 8):
+			create(i)
+			reverse(j)
+			os.rename("bac.png", "fun/sc"+str(i)+"r"+str(j)+".png")
 
 def create(detail = 2):
 	with open("org.png", "rb") as ifsorg, open("msg.png", "rb") as ifsmsg:
